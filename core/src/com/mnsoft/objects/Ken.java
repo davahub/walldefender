@@ -38,10 +38,10 @@ public class Ken implements Poolable {
 
 	public Ken() {
 		body = new Rectangle();
-		body.width = 32;
-		body.height = 32;
+		body.width = 14;
+		body.height = 10;
 		body.x = GameConst.camWidth / 2 - body.width / 2;
-		body.y = 20;
+		body.y = 1;
 		bulletList = new ArrayList<Bullet>();
 		bulletAmount = 8000;
 		stateTime = 0;
@@ -50,10 +50,15 @@ public class Ken implements Poolable {
 		int kenRow = 8;
 		kenAssetMap = TextureRegion.split(Asset.KEN, Asset.KEN.getWidth()
 				/ kenCol, Asset.KEN.getHeight() / kenRow); // #10
-		animMoveRight = new Animation(0.25f, kenAssetMap[2][0],
-				kenAssetMap[2][1], kenAssetMap[2][2]);
-		animMoveLeft = new Animation(0.25f, kenAssetMap[1][0],
-				kenAssetMap[1][1], kenAssetMap[1][2]);
+		// MOVE RIGHT
+//		animMoveRight = new Animation(0.25f, kenAssetMap[2][0],
+//				kenAssetMap[2][1], kenAssetMap[2][2]);
+		animMoveRight = new Animation(0.3f, Asset.KEN_PIXEL2,
+				Asset.KEN_PIXEL1, Asset.KEN_PIXEL3);
+		// MOVE LEFT
+		animMoveLeft = new Animation(0.3f, Asset.KEN_PIXEL3,
+				Asset.KEN_PIXEL1, Asset.KEN_PIXEL2);
+		
 
 		healthBar = new HealthBar(100);
 	}
@@ -107,13 +112,13 @@ public class Ken implements Poolable {
 	}
 
 	public void moveLeft() {
-		body.x = body.x - 200 * Gdx.graphics.getDeltaTime();
+		body.x = body.x - 10 * Gdx.graphics.getDeltaTime();
 		state = State.MOVE_LEFT;
 		lastMoveTime = TimeUtils.nanoTime();
 	}
 
 	public void moveRight() {
-		body.x = body.x + 200 * Gdx.graphics.getDeltaTime();
+		body.x = body.x + 10 * Gdx.graphics.getDeltaTime();
 		state = State.MOVE_RIGHT;
 		lastMoveTime = TimeUtils.nanoTime();
 	}
@@ -150,7 +155,7 @@ public class Ken implements Poolable {
 			break;
 		default:
 			// IDLE
-			stateFrame = kenAssetMap[3][1];
+			stateFrame = Asset.KEN_PIXEL1;
 		}
 		batch.draw(stateFrame, body.x, body.y);
 		healthBar.render(batch, body.x, body.y + body.height + 2);
@@ -165,7 +170,7 @@ public class Ken implements Poolable {
 	@Override
 	public void reset() {
 		body.x = GameConst.camWidth / 2 - body.width / 2;
-		body.y = 20;
+		body.y = 1;
 		bulletAmount = 8000;
 		stateTime = 0;
 		state = State.IDLE;

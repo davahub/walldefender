@@ -4,7 +4,7 @@ public class GameSettings {
 	public static boolean isSoundEnabled = true;
 	
 	public interface GameConst {
-		public static final int camWidth = 480;
-		public static final int camHeight = 800;
+		public static final int camWidth = 64;
+		public static final int camHeight = 64;
 	}
 }

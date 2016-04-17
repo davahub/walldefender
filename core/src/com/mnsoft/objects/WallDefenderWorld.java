@@ -26,7 +26,7 @@ public class WallDefenderWorld {
 		render(batch);
 		update(delta); 
 		processCollisions();
-		army.spawnEnemy();
+//		army.spawnEnemy();
 	}
 	
 	

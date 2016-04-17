@@ -31,6 +31,12 @@ public class Asset {
 	public final static TextureRegion MARTIAN_RUNNING3 = new TextureRegion(MARTIAN, 122, 101, MARTIAN_WIDTH, MARTIAN_HEIGHT);
 	public final static TextureRegion MARTIAN_RUNNING4 = new TextureRegion(MARTIAN, 162, 101, MARTIAN_WIDTH, MARTIAN_HEIGHT);
 	// KEN
+	public final static Texture KEN_PIXELS = new Texture(Gdx.files.internal("ken-pixel.png"));
+	public final static TextureRegion KEN_PIXEL1 = new TextureRegion(KEN_PIXELS, 0, 0, 14, 10);
+	public final static TextureRegion KEN_PIXEL2 = new TextureRegion(KEN_PIXELS, 15, 0, 14, 10);
+	public final static TextureRegion KEN_PIXEL3 = new TextureRegion(KEN_PIXELS, 30, 0, 14, 10);
+	
+	
 	public final static Texture KEN = new Texture(Gdx.files.internal("ken.png"));
 	public final static TextureRegion KEN_RIGHT_TEXTURE1 = new TextureRegion(ITEMS, 0, 128, 32, 32);
 	public final static TextureRegion KEN_RIGHT_TEXTURE2 = new TextureRegion(ITEMS, 32, 128, 32, 32);	
