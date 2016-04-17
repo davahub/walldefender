@@ -4,12 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Asset {
 
+	// FONT
+	public final static BitmapFont FONT = new BitmapFont(Gdx.files.internal("fonts/font.fnt"), Gdx.files.internal("fonts/font.png"), false);
+	public final static GlyphLayout GLYPHLAYOUT = new GlyphLayout();
+	public final static BitmapFont FONT_BIG = new BitmapFont(Gdx.files.internal("fonts/font-big.fnt"), Gdx.files.internal("fonts/font-big.png"), false);
+	public final static GlyphLayout GLYPHLAYOUT_BIG = new GlyphLayout();
 	// TEXTURE
 	public final static Texture BACKGROUND = new Texture(Gdx.files.internal("background.png"));
 	public final static Texture MENU_IMAGE = new Texture(Gdx.files.internal("menuText.png"));
@@ -39,6 +46,12 @@ public class Asset {
 	public final static TextureRegion KEN_IDLE2 = new TextureRegion(KEN_PIXELS, 15, 24, 14, 10);
 	public final static TextureRegion KEN_IDLE3 = new TextureRegion(KEN_PIXELS, 30, 24, 14, 10);
 	public final static TextureRegion KEN_IDLE4 = new TextureRegion(KEN_PIXELS, 45, 24, 14, 10);
+    // KEN SHOOT	
+	public final static TextureRegion KEN_SHOOT_LEFT = new TextureRegion(KEN_PIXELS, 0, 34, 14, 10);
+	public final static TextureRegion KEN_SHOOT_RIGHT = new TextureRegion(KEN_PIXELS, 15, 34, 14, 10);
+	// WALL
+	public final static TextureRegion WALL = new TextureRegion(KEN_PIXELS, 0, 47, 64, 1);
+	public final static TextureRegion WALL_HIT = new TextureRegion(KEN_PIXELS, 0, 48, 64, 1);
 	
 	// ENEMY
 	public final static TextureRegion ENEMY_PIXEL1 = new TextureRegion(KEN_PIXELS, 0, 58, 8, 6);

@@ -14,11 +14,12 @@ public class GameScreen implements Screen {
 	public OrthographicCamera camera;
 	private WallDefenderWorld world;
 	
+	
 	public GameScreen(final WallDefenderGame game) {
 		this.game = game;
 		camera = new OrthographicCamera(GameConst.camWidth, GameConst.camHeight);
 		camera.position.set(GameConst.camWidth / 2, GameConst.camHeight / 2, 0);
-		world = new WallDefenderWorld();
+		world = new WallDefenderWorld(game);
 	}
 	
 	@Override
@@ -28,8 +29,9 @@ public class GameScreen implements Screen {
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);
 		game.batch.begin();
-		game.font.draw(game.batch, "Kills: " + world.ken.kills, 0, 0);
 		world.render(delta, game.batch);
+		Asset.GLYPHLAYOUT.setText(Asset.FONT, "Kill " + world.ken.kills);
+		Asset.FONT.draw(game.batch, Asset.GLYPHLAYOUT, 1, 62);
 		game.batch.end();
 		world.processInputs(camera);
 	}

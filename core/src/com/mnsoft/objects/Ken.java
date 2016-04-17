@@ -26,6 +26,7 @@ public class Ken implements Poolable {
 	private long lastMoveTime;
 	private int bulletAmount;
 	private Animation animExplode;
+	private boolean shootRight;
 	// PROTECTED
 	protected float stateTime;
 	protected HealthBar healthBar;
@@ -37,7 +38,7 @@ public class Ken implements Poolable {
 
 	// ENUM
 	public enum State {
-		IDLE, MOVE_RIGHT, MOVE_LEFT, DYING, DEAD, HIT
+		IDLE, MOVE_RIGHT, MOVE_LEFT, DYING, DEAD, HIT, SHOOT_LEFT, SHOOT_RIGHT
 	}
 
 	public Ken() {
@@ -47,7 +48,7 @@ public class Ken implements Poolable {
 		body.x = GameConst.camWidth / 2 - body.width / 2;
 		body.y = 1;
 		bulletList = new ArrayList<Bullet>();
-		bulletAmount = 8000;
+		bulletAmount = 160000;
 		stateTime = 0;
 		state = State.IDLE;
 		// IDLE ANIM
@@ -59,7 +60,7 @@ public class Ken implements Poolable {
 		// MOVE LEFT
 		animMoveLeft = new Animation(0.3f, Asset.KEN_IDLE1,
 				Asset.KEN_IDLE2, Asset.KEN_IDLE3);
-		healthBar = new HealthBar(100, 10, 1);
+		healthBar = new HealthBar(20, 10, 1);
 		
 		int explosionFrameCol = 6;
 		int explosionFrameRow = 2;
@@ -73,6 +74,7 @@ public class Ken implements Poolable {
             }
         }
         animExplode = new Animation(0.025f, explodeFrames);
+        shootRight = true;
 	}
 
 	public void hit() {
@@ -88,6 +90,9 @@ public class Ken implements Poolable {
 	}
 
 	public void shoot() {
+		if (state == State.DEAD) {
+			return;
+		}
 		if (TimeUtils.nanoTime() - lastActionTime < 100000000) {
 			return;
 		}
@@ -97,21 +102,34 @@ public class Ken implements Poolable {
 			return;
 		}
 		Bullet bullet = PoolManager.BULLET_POOL.obtain();
-		bullet.setPosition(body.x + ((body.width / 2) - 4), body.y);
+		if (shootRight) {
+			bullet.setPosition(body.x + ((body.width / 2) + 5), body.y + 5);
+			state = State.SHOOT_RIGHT;
+			shootRight = false;
+		} else {
+			bullet.setPosition(body.x + ((body.width / 2) - 6), body.y + 5);
+			shootRight = true;
+			state = State.SHOOT_LEFT;
+		}
 		bulletList.add(bullet);
 		Asset.playShotSound();
 		bulletAmount--;
 		lastActionTime = TimeUtils.nanoTime();
-		state = State.IDLE;
 	}
 
 	public void die() {
+		if (state == State.DEAD) {
+			return;
+		}
 		state = State.DYING;
 		stateTime = 0;
 		Asset.playExplosionSound();
 	}
 
 	public void reload() {
+		if (state == State.DEAD) {
+			return;
+		}
 		if (TimeUtils.nanoTime() - lastActionTime < 190000000) {
 			return;
 		}
@@ -122,6 +140,10 @@ public class Ken implements Poolable {
 	
 	public boolean isDead() {
 		return state == State.DEAD;
+	}
+	
+	public boolean isDying() {
+		return state == State.DYING;
 	}
 
 	public void beIdle() {
@@ -184,6 +206,18 @@ public class Ken implements Poolable {
 				state = State.IDLE;	
 			}
 			break;
+		case SHOOT_LEFT:
+			stateFrame = Asset.KEN_SHOOT_LEFT;
+			if (stateTime > 0.9f) {
+				state = State.IDLE;	
+			}
+			break;
+		case SHOOT_RIGHT:
+			stateFrame = Asset.KEN_SHOOT_RIGHT;
+			if (stateTime > 0.9f) {
+				state = State.IDLE;	
+			}
+			break;
 		default:
 			// IDLE
 			stateFrame = animIdle.getKeyFrame(stateTime, true);
@@ -204,7 +238,7 @@ public class Ken implements Poolable {
 	public void reset() {
 		body.x = GameConst.camWidth / 2 - body.width / 2;
 		body.y = 1;
-		bulletAmount = 8000;
+		bulletAmount = 16000;
 		stateTime = 0;
 		state = State.IDLE;
 		healthBar.setCurrentHealth(100);
