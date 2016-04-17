@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class HealthBar {
@@ -14,22 +14,27 @@ public class HealthBar {
 	private Texture healthBackground;
 	private int maxHealth;
 	private int currentHealth;
+	private int width;
+	private int height;
 	
-	public HealthBar(int maxHealth) {
+	
+	public HealthBar(int maxHealth, int width, int height) {
 		// BACKGROUND
-		Pixmap pixmapHealth = new Pixmap(30, 5, Format.Alpha);
+		Pixmap pixmapHealth = new Pixmap(width, height, Format.Alpha);
 		pixmapHealth.setColor(Color.BLUE);
-		pixmapHealth.drawRectangle(0, 0, 30, 5);
-		healthBackground = new Texture(30, 5, Format.Alpha);
+		pixmapHealth.drawRectangle(0, 0, width, height);
+		healthBackground = new Texture(width, height, Format.Alpha);
 		healthBackground.draw(pixmapHealth, 0, 0);
 		// MAP OF HEALTH
+		this.width = width;
+		this.height = height;
 		healthMap = new HashMap<Integer, Texture>();
-		for (int i = 1; i <= 10; i++) {
-			int healthRise = i * 3;
-			pixmapHealth = new Pixmap(healthRise, 5, Format.RGB565);
+		for (int i = 1; i <= width; i++) {
+			int healthRise = i;
+			pixmapHealth = new Pixmap(healthRise, height, Format.RGB565);
 			pixmapHealth.setColor(Color.BLUE);
-			pixmapHealth.drawRectangle(0, 0, healthRise, 5);
-			Texture healthBar = new Texture(healthRise, 5, Format.RGB565);
+			pixmapHealth.drawRectangle(0, 0, healthRise, height);
+			Texture healthBar = new Texture(healthRise, height, Format.RGB565);
 			healthBar.draw(pixmapHealth, 0, 0);
 			healthMap.put(i, healthBar);
 		}
@@ -65,8 +70,8 @@ public class HealthBar {
 	}
 	
 	private int getHealthMapKey() {
-		int tenPercentHealth = maxHealth/ 10;
-		for (int i=10; i >= 1; i--) {
+		int tenPercentHealth = maxHealth/ width;
+		for (int i=width; i >= 1; i--) {
 			if ((i * tenPercentHealth) <= currentHealth 
 					&& currentHealth <= maxHealth) {
 				return i;

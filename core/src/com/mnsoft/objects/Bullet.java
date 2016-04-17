@@ -2,7 +2,6 @@ package com.mnsoft.objects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Pool.Poolable;
 import com.mnsoft.game.Asset;
@@ -14,10 +13,10 @@ public class Bullet implements Poolable {
 	
 	public Bullet() {
 		body = new Rectangle();
-		body.width = 9;
-		body.height = 37;
-		animBlueLaser = new Animation(0.3f, new TextureRegion(Asset.LASER_BLUE2), new TextureRegion(Asset.LASER_BLUE3)
-		, new TextureRegion(Asset.LASER_BLUE1));
+		body.width = 1;
+		body.height = 1;
+//		animBlueLaser = new Animation(0.3f, new TextureRegion(Asset.LASER_BLUE2), new TextureRegion(Asset.LASER_BLUE3)
+//		, new TextureRegion(Asset.LASER_BLUE1));
 		stateTime = 0;
 	}
 	
@@ -27,12 +26,13 @@ public class Bullet implements Poolable {
 	}
 	
 	public void update(float delta) {
-		body.y += 200 * delta;
+		body.y += 100 * delta;
 		stateTime += delta;
 	}
 	
 	public void render(SpriteBatch batch) {
-		batch.draw(animBlueLaser.getKeyFrame(stateTime, false), body.x, body.y);
+//		batch.draw(animBlueLaser.getKeyFrame(stateTime, false), body.x, body.y);
+		batch.draw(Asset.BULLET_PIXEL1, body.x, body.y);
 	}
 
 	/**

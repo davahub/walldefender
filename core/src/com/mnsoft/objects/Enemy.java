@@ -13,7 +13,9 @@ public class Enemy extends Ken {
 	
 	public Enemy() {
 		super();
-		body.y = GameConst.camHeight - 42;
+		body.width = 8;
+		body.height = 6;
+		body.y = GameConst.camHeight;
 		int explosionFrameCol = 4;
 		int explosionFrameRow = 4;
 		Texture explodeTexture = Asset.EXPLODE;
@@ -26,9 +28,10 @@ public class Enemy extends Ken {
             }
         }
         animExplode = new Animation(0.025f, explodeFrames);
-        animRunning = new Animation(0.25f, Asset.MARTIAN_RUNNING1, Asset.MARTIAN_RUNNING2, Asset.MARTIAN_RUNNING3, Asset.MARTIAN_RUNNING4);
+//        animRunning = new Animation(0.25f, Asset.MARTIAN_RUNNING1, Asset.MARTIAN_RUNNING2, Asset.MARTIAN_RUNNING3, Asset.MARTIAN_RUNNING4);
+        animRunning = new Animation(0.25f, Asset.ENEMY_PIXEL1, Asset.ENEMY_PIXEL2, Asset.ENEMY_PIXEL3, Asset.ENEMY_PIXEL4);
 		stateTime = 0;
-		healthBar = new HealthBar(100);
+		healthBar = new HealthBar(100, 6, 1);
 	}
 	
 	@Override
@@ -52,13 +55,13 @@ public class Enemy extends Ken {
 		}
 		if (state != State.DEAD) {
 			batch.draw(stateFrame, body.x, body.y);
-			healthBar.render(batch, body.x, body.y + body.height + 15);
+			healthBar.render(batch, body.x + 1, body.y + body.height + 1);
 		}
 	}
 	
 	@Override
 	public void reset() {
-		body.y = GameConst.camHeight - 42;
+		body.y = GameConst.camHeight;
 		stateTime = 0;
 		healthBar.setCurrentHealth(100);
 		state = State.IDLE;

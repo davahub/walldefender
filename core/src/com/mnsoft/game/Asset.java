@@ -32,10 +32,17 @@ public class Asset {
 	public final static TextureRegion MARTIAN_RUNNING4 = new TextureRegion(MARTIAN, 162, 101, MARTIAN_WIDTH, MARTIAN_HEIGHT);
 	// KEN
 	public final static Texture KEN_PIXELS = new Texture(Gdx.files.internal("ken-pixel.png"));
-	public final static TextureRegion KEN_PIXEL1 = new TextureRegion(KEN_PIXELS, 0, 0, 14, 10);
-	public final static TextureRegion KEN_PIXEL2 = new TextureRegion(KEN_PIXELS, 15, 0, 14, 10);
-	public final static TextureRegion KEN_PIXEL3 = new TextureRegion(KEN_PIXELS, 30, 0, 14, 10);
 	
+	public final static TextureRegion KEN_IDLE1 = new TextureRegion(KEN_PIXELS, 0, 24, 14, 10);
+	public final static TextureRegion KEN_IDLE2 = new TextureRegion(KEN_PIXELS, 15, 24, 14, 10);
+	public final static TextureRegion KEN_IDLE3 = new TextureRegion(KEN_PIXELS, 30, 24, 14, 10);
+	public final static TextureRegion KEN_IDLE4 = new TextureRegion(KEN_PIXELS, 45, 24, 14, 10);
+	
+	// ENEMY
+	public final static TextureRegion ENEMY_PIXEL1 = new TextureRegion(KEN_PIXELS, 0, 58, 8, 6);
+	public final static TextureRegion ENEMY_PIXEL2 = new TextureRegion(KEN_PIXELS, 9, 58, 8, 6);
+	public final static TextureRegion ENEMY_PIXEL3 = new TextureRegion(KEN_PIXELS, 18, 58, 8, 6);
+	public final static TextureRegion ENEMY_PIXEL4 = new TextureRegion(KEN_PIXELS, 27, 58, 8, 6);
 	
 	public final static Texture KEN = new Texture(Gdx.files.internal("ken.png"));
 	public final static TextureRegion KEN_RIGHT_TEXTURE1 = new TextureRegion(ITEMS, 0, 128, 32, 32);
@@ -44,6 +51,9 @@ public class Asset {
 	public final static TextureRegion KEN_IDLE_TEXTURE2 = new TextureRegion(ITEMS, 96, 128, 32, 32);	
 	public final static TextureRegion KEN_DEAD_TEXTURE = new TextureRegion(ITEMS, 128, 128, 32, 32);
 	public final static TextureRegion ENEMY_TEXTURE = new TextureRegion(ITEMS, 166, 128, 32, 32);
+	// BULLET
+	public final static TextureRegion BULLET_PIXEL1 = new TextureRegion(KEN_PIXELS, 63, 0, 1, 1);
+	
 	// SOUND
 	private final static Sound clickSound = Gdx.audio.newSound(Gdx.files.internal("click.wav"));
 	private final static Music rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));

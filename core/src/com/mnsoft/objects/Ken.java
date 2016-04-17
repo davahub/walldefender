@@ -16,6 +16,8 @@ import com.mnsoft.game.PoolManager;
 public class Ken implements Poolable {
 
 	// PRIVATE
+	// ANIM
+	private Animation animIdle;
 	private Animation animMoveRight;
 	private Animation animMoveLeft;
 	private TextureRegion[][] kenAssetMap;
@@ -46,21 +48,16 @@ public class Ken implements Poolable {
 		bulletAmount = 8000;
 		stateTime = 0;
 		state = State.IDLE;
-		int kenCol = 12;
-		int kenRow = 8;
-		kenAssetMap = TextureRegion.split(Asset.KEN, Asset.KEN.getWidth()
-				/ kenCol, Asset.KEN.getHeight() / kenRow); // #10
+		// IDLE ANIM
+		animIdle = new Animation(0.3f, Asset.KEN_IDLE1,
+				Asset.KEN_IDLE2, Asset.KEN_IDLE3, Asset.KEN_IDLE4);
 		// MOVE RIGHT
-//		animMoveRight = new Animation(0.25f, kenAssetMap[2][0],
-//				kenAssetMap[2][1], kenAssetMap[2][2]);
-		animMoveRight = new Animation(0.3f, Asset.KEN_PIXEL2,
-				Asset.KEN_PIXEL1, Asset.KEN_PIXEL3);
+		animMoveRight = new Animation(0.3f, Asset.KEN_IDLE1,
+				Asset.KEN_IDLE2, Asset.KEN_IDLE3);
 		// MOVE LEFT
-		animMoveLeft = new Animation(0.3f, Asset.KEN_PIXEL3,
-				Asset.KEN_PIXEL1, Asset.KEN_PIXEL2);
-		
-
-		healthBar = new HealthBar(100);
+		animMoveLeft = new Animation(0.3f, Asset.KEN_IDLE1,
+				Asset.KEN_IDLE2, Asset.KEN_IDLE3);
+		healthBar = new HealthBar(100, 10, 1);
 	}
 
 	public void hit() {
@@ -112,13 +109,13 @@ public class Ken implements Poolable {
 	}
 
 	public void moveLeft() {
-		body.x = body.x - 10 * Gdx.graphics.getDeltaTime();
+		body.x = body.x - 20 * Gdx.graphics.getDeltaTime();
 		state = State.MOVE_LEFT;
 		lastMoveTime = TimeUtils.nanoTime();
 	}
 
 	public void moveRight() {
-		body.x = body.x + 10 * Gdx.graphics.getDeltaTime();
+		body.x = body.x + 20 * Gdx.graphics.getDeltaTime();
 		state = State.MOVE_RIGHT;
 		lastMoveTime = TimeUtils.nanoTime();
 	}
@@ -155,10 +152,10 @@ public class Ken implements Poolable {
 			break;
 		default:
 			// IDLE
-			stateFrame = Asset.KEN_PIXEL1;
+			stateFrame = animIdle.getKeyFrame(stateTime, true);
 		}
 		batch.draw(stateFrame, body.x, body.y);
-		healthBar.render(batch, body.x, body.y + body.height + 2);
+		healthBar.render(batch, body.x + 2, body.y + body.height + 1);
 	}
 
 	private void renderBullets(SpriteBatch batch) {
