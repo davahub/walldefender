@@ -31,6 +31,23 @@ public class Enemy extends Ken {
         animRunning = new Animation(0.25f, Asset.ENEMY_PIXEL1, Asset.ENEMY_PIXEL2, Asset.ENEMY_PIXEL3, Asset.ENEMY_PIXEL4);
 		stateTime = 0;
 		healthBar = new HealthBar(100, 6, 1);
+		damage = 10;
+	}
+	
+	public void hit() {
+		if (state == State.DEAD) {
+			return;
+		}
+		if (kills > 11) {
+			healthBar.decrease(40);
+		} else {
+			healthBar.decrease(20);
+		}
+		Asset.playDropSound();
+		state = State.HIT;
+		if (healthBar.isEmpty()) {
+			die();
+		}
 	}
 	
 	@Override

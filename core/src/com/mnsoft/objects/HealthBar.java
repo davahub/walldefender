@@ -53,6 +53,15 @@ public class HealthBar {
 		this.currentHealth = currentHealth;
 	}
 	
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+		this.currentHealth = maxHealth;
+	}
+	
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+	
 	public boolean isEmpty() {
 		return (currentHealth <= 0);
 	}
@@ -79,4 +88,6 @@ public class HealthBar {
 		}
 		return 1;
 	}
+	
+	
 }

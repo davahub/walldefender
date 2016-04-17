@@ -27,6 +27,7 @@ public class Ken implements Poolable {
 	private int bulletAmount;
 	private Animation animExplode;
 	private boolean shootRight;
+
 	// PROTECTED
 	protected float stateTime;
 	protected HealthBar healthBar;
@@ -35,6 +36,7 @@ public class Ken implements Poolable {
 	public Rectangle body;
 	public ArrayList<Bullet> bulletList;
 	public int kills;
+	public int damage;
 
 	// ENUM
 	public enum State {
@@ -60,7 +62,7 @@ public class Ken implements Poolable {
 		// MOVE LEFT
 		animMoveLeft = new Animation(0.3f, Asset.KEN_IDLE1,
 				Asset.KEN_IDLE2, Asset.KEN_IDLE3);
-		healthBar = new HealthBar(20, 10, 1);
+		healthBar = new HealthBar(100, 10, 1);
 		
 		int explosionFrameCol = 6;
 		int explosionFrameRow = 2;
@@ -75,13 +77,18 @@ public class Ken implements Poolable {
         }
         animExplode = new Animation(0.025f, explodeFrames);
         shootRight = true;
+        damage = 20;
+	}
+	
+	public void setMaxHealth(int maxHealth) {
+		healthBar.setMaxHealth(maxHealth);
 	}
 
-	public void hit() {
+	public void hit(int damage) {
 		if (state == State.DEAD) {
 			return;
 		}
-		healthBar.decrease(20);
+		healthBar.decrease(damage);
 		Asset.playDropSound();
 		state = State.HIT;
 		if (healthBar.isEmpty()) {
@@ -97,7 +104,6 @@ public class Ken implements Poolable {
 			return;
 		}
 		if (bulletAmount < 1) {
-			Asset.playGunEmptySound();
 			lastActionTime = TimeUtils.nanoTime();
 			return;
 		}
@@ -110,6 +116,11 @@ public class Ken implements Poolable {
 			bullet.setPosition(body.x + ((body.width / 2) - 6), body.y + 5);
 			shootRight = true;
 			state = State.SHOOT_LEFT;
+		}
+		if (kills > 110) {
+			this.damage = 40;
+		} else if (kills > 210) {
+			this.damage = 100;
 		}
 		bulletList.add(bullet);
 		Asset.playShotSound();
@@ -134,7 +145,6 @@ public class Ken implements Poolable {
 			return;
 		}
 		bulletAmount = 20;
-		Asset.playGunReloadSound();
 		lastActionTime = TimeUtils.nanoTime();
 	}
 	

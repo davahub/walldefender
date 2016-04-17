@@ -12,12 +12,15 @@ public class EnemyArmy {
 
 	public ArrayList<Enemy> enemies;
 	private long lastSpawnTime ;
-	int level1EnemyCount = 5;
-	int level2EnemyCount = 5;
-	int level3EnemyCount = 5;
+	public int level1EnemyCount;
+	public int level2EnemyCount;
+	public int level3EnemyCount;
 	
 	public EnemyArmy() {
 		enemies = new ArrayList<Enemy>();
+		level1EnemyCount = 100;
+		level2EnemyCount = 100;
+		level3EnemyCount = 100;
 	}
 	
 	public void render(SpriteBatch batch) {
@@ -39,6 +42,7 @@ public class EnemyArmy {
 		if(TimeUtils.nanoTime() - lastSpawnTime > 1000000000) {
 			Enemy enemy = PoolManager.ENEMY_POOL.obtain();
 			enemy.body.x = MathUtils.random(0, GameConst.camWidth - enemy.body.width);
+			enemy.setMaxHealth(200);
 			enemies.add(enemy);
 			level2EnemyCount = level2EnemyCount -1;
 			lastSpawnTime = TimeUtils.nanoTime();
@@ -48,6 +52,7 @@ public class EnemyArmy {
 		if(TimeUtils.nanoTime() - lastSpawnTime > 1000000000) {
 			Enemy enemy = PoolManager.ENEMY_POOL.obtain();
 			enemy.body.x = MathUtils.random(0, GameConst.camWidth - enemy.body.width);
+			enemy.setMaxHealth(300);
 			enemies.add(enemy);
 			level3EnemyCount = level3EnemyCount -1;
 			lastSpawnTime = TimeUtils.nanoTime();

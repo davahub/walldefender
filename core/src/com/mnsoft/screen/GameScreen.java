@@ -30,7 +30,7 @@ public class GameScreen implements Screen {
 		game.batch.setProjectionMatrix(camera.combined);
 		game.batch.begin();
 		world.render(delta, game.batch);
-		Asset.GLYPHLAYOUT.setText(Asset.FONT, "Kill " + world.ken.kills);
+		Asset.GLYPHLAYOUT.setText(Asset.FONT, "Kills " + world.ken.kills);
 		Asset.FONT.draw(game.batch, Asset.GLYPHLAYOUT, 1, 62);
 		game.batch.end();
 		world.processInputs(camera);

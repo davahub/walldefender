@@ -94,7 +94,7 @@ public class WallDefenderWorld {
 						continue;
 					}
 					if (bullet.body.overlaps(enemy.body)) {
-						enemy.hit();
+						enemy.hit(ken.damage);
 						bulletIter.remove();
 						PoolManager.BULLET_POOL.free(bullet);
 						break loop;
@@ -116,7 +116,7 @@ public class WallDefenderWorld {
 				break;
 			}
 			if (enemy.body.y < 0) {
-				ken.hit();
+				ken.hit(enemy.damage);
 				iter.remove();
 				PoolManager.ENEMY_POOL.free(enemy);
 			}
@@ -175,6 +175,7 @@ public class WallDefenderWorld {
 			batch.draw(end, (GameConst.camWidth / 2) - (end.getRegionWidth() / 2), (GameConst.camHeight / 2) + (end.getRegionHeight() / 2));
 			Asset.GLYPHLAYOUT.setText(Asset.FONT, "R E T R Y");
 			Asset.FONT.draw(batch, Asset.GLYPHLAYOUT, 17, 10);
+			isReady = false;
 //			batch.draw(healthBackground, 17, 5);
 		}
 		if (isWon) {
@@ -214,7 +215,8 @@ public class WallDefenderWorld {
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 			ken.shoot();
 		}
-		if (ken.isDead() && Gdx.input.isTouched() && !isReady) {
+		// RETRY 
+		if (ken.isDead() && (Gdx.input.isTouched() ||  Gdx.input.isKeyPressed(Keys.SPACE)) && !isReady) {
 			camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 			if (retryBounds.contains(touchPoint.x, touchPoint.y)) {
 				Asset.playClickSound();
@@ -222,7 +224,8 @@ public class WallDefenderWorld {
 				return;
 			}
 		}
-		if (!ken.isDead() && Gdx.input.isTouched()) {
+		// READY 
+		if (!ken.isDead() && (Gdx.input.isTouched() ||  Gdx.input.isKeyPressed(Keys.SPACE)) && !isReady) {
 			camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 			if (readyBounds.contains(touchPoint.x, touchPoint.y)) {
 				Asset.playClickSound();

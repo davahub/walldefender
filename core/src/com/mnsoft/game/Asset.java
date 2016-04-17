@@ -7,80 +7,47 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Asset {
 
 	// FONT
-	public final static BitmapFont FONT = new BitmapFont(Gdx.files.internal("fonts/font.fnt"), Gdx.files.internal("fonts/font.png"), false);
+	public final static BitmapFont FONT = new BitmapFont(Gdx.files.internal("fonts/font-small.fnt"), Gdx.files.internal("fonts/font-small.png"), false);
 	public final static GlyphLayout GLYPHLAYOUT = new GlyphLayout();
 	public final static BitmapFont FONT_BIG = new BitmapFont(Gdx.files.internal("fonts/font-big.fnt"), Gdx.files.internal("fonts/font-big.png"), false);
 	public final static GlyphLayout GLYPHLAYOUT_BIG = new GlyphLayout();
 	// TEXTURE
 	public final static Texture BACKGROUND = new Texture(Gdx.files.internal("background.png"));
-	public final static Texture MENU_IMAGE = new Texture(Gdx.files.internal("menuText.png"));
-	public final static Texture DROP_IMAGE = new Texture(Gdx.files.internal("droplet.png"));
-	public final static Texture ITEMS = new Texture(Gdx.files.internal("items.png"));
-	public final static Texture RUNNING_MAN = new Texture(Gdx.files.internal("running-man.png"));
-	public final static Texture EXPLODE = new Texture(Gdx.files.internal("explode.png"));
-	public final static Texture LASER_BLUE1 = new Texture(Gdx.files.internal("laserBlue1.png"));
-	public final static Texture LASER_BLUE2 = new Texture(Gdx.files.internal("laserBlue2.png"));
-	public final static Texture LASER_BLUE3 = new Texture(Gdx.files.internal("laserBlue3.png"));
 	public final static Texture EXPLOSION_PIXEL = new Texture(Gdx.files.internal("explosion.png"));
 	public final static Texture THE_END = new Texture(Gdx.files.internal("theEnd.png"));
-	// MAP
-	public final static TiledMap TILED_MAP = new TmxMapLoader().load("archer-map.tmx");
-	// MARTIAN
-	private final static int MARTIAN_WIDTH = 27;
-	private final static int MARTIAN_HEIGHT = 47;
-	public final static Texture MARTIAN = new Texture(Gdx.files.internal("martian.png"));
-	public final static TextureRegion MARTIAN_RUNNING1 = new TextureRegion(MARTIAN, 46, 101, MARTIAN_WIDTH, MARTIAN_HEIGHT);
-	public final static TextureRegion MARTIAN_RUNNING2 = new TextureRegion(MARTIAN, 84, 101, MARTIAN_WIDTH, MARTIAN_HEIGHT);
-	public final static TextureRegion MARTIAN_RUNNING3 = new TextureRegion(MARTIAN, 122, 101, MARTIAN_WIDTH, MARTIAN_HEIGHT);
-	public final static TextureRegion MARTIAN_RUNNING4 = new TextureRegion(MARTIAN, 162, 101, MARTIAN_WIDTH, MARTIAN_HEIGHT);
 	// KEN
-	public final static Texture KEN_PIXELS = new Texture(Gdx.files.internal("ken-pixel.png"));
-	
-	public final static TextureRegion KEN_IDLE1 = new TextureRegion(KEN_PIXELS, 0, 24, 14, 10);
-	public final static TextureRegion KEN_IDLE2 = new TextureRegion(KEN_PIXELS, 15, 24, 14, 10);
-	public final static TextureRegion KEN_IDLE3 = new TextureRegion(KEN_PIXELS, 30, 24, 14, 10);
-	public final static TextureRegion KEN_IDLE4 = new TextureRegion(KEN_PIXELS, 45, 24, 14, 10);
-    // KEN SHOOT	
-	public final static TextureRegion KEN_SHOOT_LEFT = new TextureRegion(KEN_PIXELS, 0, 34, 14, 10);
-	public final static TextureRegion KEN_SHOOT_RIGHT = new TextureRegion(KEN_PIXELS, 15, 34, 14, 10);
+	public final static Texture MAIN_TEXTURE = new Texture(Gdx.files.internal("main-texture.png"));
+	// idle
+	public final static TextureRegion KEN_IDLE1 = new TextureRegion(MAIN_TEXTURE, 0, 24, 14, 10);
+	public final static TextureRegion KEN_IDLE2 = new TextureRegion(MAIN_TEXTURE, 15, 24, 14, 10);
+	public final static TextureRegion KEN_IDLE3 = new TextureRegion(MAIN_TEXTURE, 30, 24, 14, 10);
+	public final static TextureRegion KEN_IDLE4 = new TextureRegion(MAIN_TEXTURE, 45, 24, 14, 10);
+    // shoot
+	public final static TextureRegion KEN_SHOOT_LEFT = new TextureRegion(MAIN_TEXTURE, 0, 34, 14, 10);
+	public final static TextureRegion KEN_SHOOT_RIGHT = new TextureRegion(MAIN_TEXTURE, 15, 34, 14, 10);
 	// WALL
-	public final static TextureRegion WALL = new TextureRegion(KEN_PIXELS, 0, 47, 64, 1);
-	public final static TextureRegion WALL_HIT = new TextureRegion(KEN_PIXELS, 0, 48, 64, 1);
+	public final static TextureRegion WALL = new TextureRegion(MAIN_TEXTURE, 0, 47, 64, 1);
+	public final static TextureRegion WALL_HIT = new TextureRegion(MAIN_TEXTURE, 0, 48, 64, 1);
 	
 	// ENEMY
-	public final static TextureRegion ENEMY_PIXEL1 = new TextureRegion(KEN_PIXELS, 0, 58, 8, 6);
-	public final static TextureRegion ENEMY_PIXEL2 = new TextureRegion(KEN_PIXELS, 9, 58, 8, 6);
-	public final static TextureRegion ENEMY_PIXEL3 = new TextureRegion(KEN_PIXELS, 18, 58, 8, 6);
-	public final static TextureRegion ENEMY_PIXEL4 = new TextureRegion(KEN_PIXELS, 27, 58, 8, 6);
+	public final static TextureRegion ENEMY_PIXEL1 = new TextureRegion(MAIN_TEXTURE, 0, 58, 8, 6);
+	public final static TextureRegion ENEMY_PIXEL2 = new TextureRegion(MAIN_TEXTURE, 9, 58, 8, 6);
+	public final static TextureRegion ENEMY_PIXEL3 = new TextureRegion(MAIN_TEXTURE, 18, 58, 8, 6);
+	public final static TextureRegion ENEMY_PIXEL4 = new TextureRegion(MAIN_TEXTURE, 27, 58, 8, 6);
 	// hit
-	public final static TextureRegion ENEMY_HIT1 = new TextureRegion(KEN_PIXELS, 0, 51, 8, 6);
-//	public final static TextureRegion ENEMY_PIXEL2 = new TextureRegion(KEN_PIXELS, 9, 58, 8, 6);
-//	public final static TextureRegion ENEMY_PIXEL3 = new TextureRegion(KEN_PIXELS, 18, 58, 8, 6);
-//	public final static TextureRegion ENEMY_PIXEL4 = new TextureRegion(KEN_PIXELS, 27, 58, 8, 6);
-	
-	public final static Texture KEN = new Texture(Gdx.files.internal("ken.png"));
-	public final static TextureRegion KEN_RIGHT_TEXTURE1 = new TextureRegion(ITEMS, 0, 128, 32, 32);
-	public final static TextureRegion KEN_RIGHT_TEXTURE2 = new TextureRegion(ITEMS, 32, 128, 32, 32);	
-	public final static TextureRegion KEN_IDLE_TEXTURE1 = new TextureRegion(ITEMS, 64, 128, 32, 32);	
-	public final static TextureRegion KEN_IDLE_TEXTURE2 = new TextureRegion(ITEMS, 96, 128, 32, 32);	
-	public final static TextureRegion KEN_DEAD_TEXTURE = new TextureRegion(ITEMS, 128, 128, 32, 32);
-	public final static TextureRegion ENEMY_TEXTURE = new TextureRegion(ITEMS, 166, 128, 32, 32);
+	public final static TextureRegion ENEMY_HIT1 = new TextureRegion(MAIN_TEXTURE, 0, 51, 8, 6);
 	// BULLET
-	public final static TextureRegion BULLET_PIXEL1 = new TextureRegion(KEN_PIXELS, 63, 0, 1, 1);
+	public final static TextureRegion BULLET_PIXEL1 = new TextureRegion(MAIN_TEXTURE, 63, 0, 1, 1);
 	
 	// SOUND
 	private final static Sound clickSound = Gdx.audio.newSound(Gdx.files.internal("click.wav"));
-	private final static Music rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
+	private final static Music backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("droid-glitch.wav"));
 	private final static Sound dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 	private final static Sound shotSound = Gdx.audio.newSound(Gdx.files.internal("shot.wav"));
-	private final static Sound gunEmptySound = Gdx.audio.newSound(Gdx.files.internal("gun-empty.wav"));
-	private final static Sound gunReloadSound = Gdx.audio.newSound(Gdx.files.internal("gun-reload.wav"));
 	private final static Sound explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
 	
 	public Asset() {
@@ -88,14 +55,6 @@ public class Asset {
 	
 	public static void playExplosionSound() {
 		playSound(explosionSound);
-	}
-	
-	public static void playGunReloadSound() {
-		playSound(gunReloadSound);
-	}
-	
-	public static void playGunEmptySound() {
-		playSound(gunEmptySound);
 	}
 	
 	public static void playShotSound() {
@@ -107,8 +66,8 @@ public class Asset {
 	}
 	
 	public static void playBackgroundMusic() {
-		rainMusic.setLooping(true);
-		if (GameSettings.isSoundEnabled) rainMusic.play();
+		backgroundMusic.setLooping(true);
+		if (GameSettings.isSoundEnabled) backgroundMusic.play();
 	}
 	
 	public static void playClickSound() {
@@ -120,12 +79,14 @@ public class Asset {
 	}
 	
 	public static void destroy() {
-		MENU_IMAGE.dispose();
-		DROP_IMAGE.dispose();
-		ITEMS.dispose();
 		// SOUND 
 		clickSound.dispose();
 		dropSound.dispose();
-		rainMusic.dispose();
+		backgroundMusic.dispose();
+		// TEXTURE
+		BACKGROUND.dispose();
+		EXPLOSION_PIXEL.dispose();
+		THE_END.dispose();
+		MAIN_TEXTURE.dispose();
 	}
 }
