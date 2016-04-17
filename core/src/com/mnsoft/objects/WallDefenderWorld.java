@@ -6,7 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
+import com.mnsoft.game.Asset;
 import com.mnsoft.game.GameSettings.GameConst;
 import com.mnsoft.game.PoolManager;
 import com.mnsoft.objects.Ken.State;
@@ -116,6 +118,11 @@ public class WallDefenderWorld {
 	// RENDER
 	// ----------------------------------------------------------------
 	private void render(SpriteBatch batch) {
+		
+		TextureRegion background = new TextureRegion(Asset.BACKGROUND);
+		
+		batch.draw(background, 0, 0);
+		
 		ken.render(batch);
 		army.render(batch);
 	}
