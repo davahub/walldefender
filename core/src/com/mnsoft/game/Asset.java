@@ -20,6 +20,8 @@ public class Asset {
 	public final static Texture LASER_BLUE1 = new Texture(Gdx.files.internal("laserBlue1.png"));
 	public final static Texture LASER_BLUE2 = new Texture(Gdx.files.internal("laserBlue2.png"));
 	public final static Texture LASER_BLUE3 = new Texture(Gdx.files.internal("laserBlue3.png"));
+	public final static Texture EXPLOSION_PIXEL = new Texture(Gdx.files.internal("explosion.png"));
+	public final static Texture THE_END = new Texture(Gdx.files.internal("theEnd.png"));
 	// MAP
 	public final static TiledMap TILED_MAP = new TmxMapLoader().load("archer-map.tmx");
 	// MARTIAN
@@ -43,6 +45,11 @@ public class Asset {
 	public final static TextureRegion ENEMY_PIXEL2 = new TextureRegion(KEN_PIXELS, 9, 58, 8, 6);
 	public final static TextureRegion ENEMY_PIXEL3 = new TextureRegion(KEN_PIXELS, 18, 58, 8, 6);
 	public final static TextureRegion ENEMY_PIXEL4 = new TextureRegion(KEN_PIXELS, 27, 58, 8, 6);
+	// hit
+	public final static TextureRegion ENEMY_HIT1 = new TextureRegion(KEN_PIXELS, 0, 51, 8, 6);
+//	public final static TextureRegion ENEMY_PIXEL2 = new TextureRegion(KEN_PIXELS, 9, 58, 8, 6);
+//	public final static TextureRegion ENEMY_PIXEL3 = new TextureRegion(KEN_PIXELS, 18, 58, 8, 6);
+//	public final static TextureRegion ENEMY_PIXEL4 = new TextureRegion(KEN_PIXELS, 27, 58, 8, 6);
 	
 	public final static Texture KEN = new Texture(Gdx.files.internal("ken.png"));
 	public final static TextureRegion KEN_RIGHT_TEXTURE1 = new TextureRegion(ITEMS, 0, 128, 32, 32);

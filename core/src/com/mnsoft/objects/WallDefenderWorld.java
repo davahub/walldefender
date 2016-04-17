@@ -73,10 +73,16 @@ public class WallDefenderWorld {
 		Iterator<Enemy> iter = army.enemies.iterator();
 		while(iter.hasNext()) {
 			Enemy enemy = iter.next();
-			if (enemy.state == State.DEAD || enemy.body.y < 0) {
+			if (enemy.state == State.DEAD) {
 				if (enemy.state == State.DEAD) {
 					ken.kills++;
 				}
+				iter.remove();
+				PoolManager.ENEMY_POOL.free(enemy);
+				break;
+			}
+			if (enemy.body.y < 0) {
+				ken.hit();
 				iter.remove();
 				PoolManager.ENEMY_POOL.free(enemy);
 			}
@@ -88,7 +94,9 @@ public class WallDefenderWorld {
 	// UPDATE
 	// ----------------------------------------------------------------
 	private void update(float delta) {
-		updateEnemy(delta);
+		if (!ken.isDead()) {
+			updateEnemy(delta);
+		}
 		updateKen(delta);
 		updateBullet(delta);
 	}
@@ -118,13 +126,14 @@ public class WallDefenderWorld {
 	// RENDER
 	// ----------------------------------------------------------------
 	private void render(SpriteBatch batch) {
-		
 		TextureRegion background = new TextureRegion(Asset.BACKGROUND);
-		
+		TextureRegion end = new TextureRegion(Asset.THE_END);
 		batch.draw(background, 0, 0);
-		
 		ken.render(batch);
 		army.render(batch);
+		if (ken.isDead()) {
+			batch.draw(end, (GameConst.camWidth / 2) - (end.getRegionWidth() / 2), (GameConst.camHeight / 2) + (end.getRegionHeight() / 2));
+		}
 	}
 	
 	
@@ -151,6 +160,5 @@ public class WallDefenderWorld {
 		if (Gdx.input.isKeyPressed(Keys.R)) {
 			ken.reload();
 		}
-		ken.beIdle();
 	}
 }

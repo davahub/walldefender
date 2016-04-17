@@ -16,9 +16,9 @@ public class Enemy extends Ken {
 		body.width = 8;
 		body.height = 6;
 		body.y = GameConst.camHeight;
-		int explosionFrameCol = 4;
-		int explosionFrameRow = 4;
-		Texture explodeTexture = Asset.EXPLODE;
+		int explosionFrameCol = 6;
+		int explosionFrameRow = 2;
+		Texture explodeTexture = Asset.EXPLOSION_PIXEL;
 		TextureRegion[][] tmp = TextureRegion.split(explodeTexture, explodeTexture.getWidth()/explosionFrameCol, explodeTexture.getHeight()/explosionFrameRow);              // #10
 		TextureRegion[] explodeFrames = new TextureRegion[explosionFrameCol * explosionFrameRow];
         int index = 0;
@@ -28,7 +28,6 @@ public class Enemy extends Ken {
             }
         }
         animExplode = new Animation(0.025f, explodeFrames);
-//        animRunning = new Animation(0.25f, Asset.MARTIAN_RUNNING1, Asset.MARTIAN_RUNNING2, Asset.MARTIAN_RUNNING3, Asset.MARTIAN_RUNNING4);
         animRunning = new Animation(0.25f, Asset.ENEMY_PIXEL1, Asset.ENEMY_PIXEL2, Asset.ENEMY_PIXEL3, Asset.ENEMY_PIXEL4);
 		stateTime = 0;
 		healthBar = new HealthBar(100, 6, 1);
@@ -36,7 +35,7 @@ public class Enemy extends Ken {
 	
 	@Override
 	public void update(float delta) {
-		body.y -= 10 * delta;
+		body.y -= 5 * delta;
 		stateTime += delta;
 	}
 	
@@ -48,6 +47,12 @@ public class Enemy extends Ken {
 			stateFrame = animExplode.getKeyFrame(stateTime, false);
 			if (stateTime > 0.4f) {
 				state = State.DEAD;	
+			}
+			break;
+		case HIT:
+			stateFrame = Asset.ENEMY_HIT1;
+			if (stateTime > 0.4f) {
+				state = State.IDLE;	
 			}
 			break;
 		default:

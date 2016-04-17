@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mnsoft.game.Asset;
 import com.mnsoft.game.GameSettings.GameConst;
-import com.mnsoft.game.MapManager;
 import com.mnsoft.game.WallDefenderGame;
 import com.mnsoft.objects.WallDefenderWorld;
 
@@ -14,14 +13,12 @@ public class GameScreen implements Screen {
 	private final WallDefenderGame game; 
 	public OrthographicCamera camera;
 	private WallDefenderWorld world;
-	private MapManager mapManager;
 	
 	public GameScreen(final WallDefenderGame game) {
 		this.game = game;
 		camera = new OrthographicCamera(GameConst.camWidth, GameConst.camHeight);
 		camera.position.set(GameConst.camWidth / 2, GameConst.camHeight / 2, 0);
 		world = new WallDefenderWorld();
-		mapManager = new MapManager();
 	}
 	
 	@Override
@@ -31,10 +28,9 @@ public class GameScreen implements Screen {
 		camera.update();
 		game.batch.setProjectionMatrix(camera.combined);
 		game.batch.begin();
-		game.font.draw(game.batch, "Kills: " + world.ken.kills, 0, 800);
+		game.font.draw(game.batch, "Kills: " + world.ken.kills, 0, 0);
 		world.render(delta, game.batch);
 		game.batch.end();
-		mapManager.renderForeground();
 		world.processInputs(camera);
 	}
 	
@@ -49,6 +45,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void pause() {
+		
 	}
 
 	@Override
