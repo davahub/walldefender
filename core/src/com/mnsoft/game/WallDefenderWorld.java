@@ -1,4 +1,4 @@
-package com.mnsoft.objects;
+package com.mnsoft.game;
 
 import java.util.Iterator;
 
@@ -13,12 +13,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.mnsoft.game.Asset;
 import com.mnsoft.game.GameSettings.GameConst;
-import com.mnsoft.game.PoolManager;
-import com.mnsoft.game.WallDefenderGame;
-import com.mnsoft.objects.Ken.State;
-import com.mnsoft.screen.GameScreen;
+import com.mnsoft.game.Ken.State;
 
 public class WallDefenderWorld {
 	public Ken ken;

@@ -1,4 +1,4 @@
-package com.mnsoft.objects;
+package com.mnsoft.game;
 
 import java.util.HashMap;
 

@@ -1,10 +1,9 @@
-package com.mnsoft.objects;
+package com.mnsoft.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mnsoft.game.Asset;
 import com.mnsoft.game.GameSettings.GameConst;
 
 public class Enemy extends Ken {

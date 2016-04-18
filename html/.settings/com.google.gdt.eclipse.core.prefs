@@ -1,5 +1,4 @@
-#Sun Apr 17 11:49:44 BST 2016
-warSrcDir=webapp/
-lastWarOutDir=/home/dava/workspace/eclipse-projects-java/walldefender/html/war
 eclipse.preferences.version=1
+lastWarOutDir=/home/dava/workspace/eclipse-projects-java/walldefender/html/war
+warSrcDir=webapp/
 warSrcDirIsOutput=false

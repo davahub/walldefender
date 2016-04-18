@@ -1,4 +1,4 @@
-package com.mnsoft.objects;
+package com.mnsoft.game;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mnsoft.game.GameSettings.GameConst;
-import com.mnsoft.game.PoolManager;
 
 public class EnemyArmy {
 

@@ -1,8 +1,6 @@
 package com.mnsoft.game;
 
 import com.badlogic.gdx.utils.Pool;
-import com.mnsoft.objects.Bullet;
-import com.mnsoft.objects.Enemy;
 
 public class PoolManager {
 	public static final Pool<Bullet> BULLET_POOL = new Pool<Bullet>() {

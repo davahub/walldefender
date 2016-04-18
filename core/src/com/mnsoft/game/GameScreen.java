@@ -1,13 +1,10 @@
-package com.mnsoft.screen;
+package com.mnsoft.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.mnsoft.game.Asset;
 import com.mnsoft.game.GameSettings.GameConst;
-import com.mnsoft.game.WallDefenderGame;
-import com.mnsoft.objects.WallDefenderWorld;
 
 public class GameScreen implements Screen {
 	private final WallDefenderGame game; 

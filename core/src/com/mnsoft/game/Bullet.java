@@ -1,10 +1,9 @@
-package com.mnsoft.objects;
+package com.mnsoft.game;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Pool.Poolable;
-import com.mnsoft.game.Asset;
 
 public class Bullet implements Poolable {
 	public float stateTime;

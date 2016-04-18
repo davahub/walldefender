@@ -1,4 +1,4 @@
-package com.mnsoft.objects;
+package com.mnsoft.game;
 
 import java.util.ArrayList;
 
@@ -10,9 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Pool.Poolable;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.mnsoft.game.Asset;
 import com.mnsoft.game.GameSettings.GameConst;
-import com.mnsoft.game.PoolManager;
 
 public class Ken implements Poolable {
 
