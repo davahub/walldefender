@@ -20,18 +20,18 @@ public class HealthBar {
 	
 	public HealthBar(int maxHealth, int width, int height) {
 		// BACKGROUND
-		Pixmap pixmapHealth = new Pixmap(width, height, Format.Alpha);
-		pixmapHealth.setColor(Color.BLUE);
-		pixmapHealth.drawRectangle(0, 0, width, height);
-		healthBackground = new Texture(width, height, Format.Alpha);
-		healthBackground.draw(pixmapHealth, 0, 0);
+//		Pixmap pixmapHealth = new Pixmap(width, height, Format.Alpha);
+//		pixmapHealth.setColor(Color.BLUE);
+//		pixmapHealth.drawRectangle(0, 0, width, height);
+//		healthBackground = new Texture(width, height, Format.Alpha);
+//		healthBackground.draw(pixmapHealth, 0, 0);
 		// MAP OF HEALTH
 		this.width = width;
 		this.height = height;
 		healthMap = new HashMap<Integer, Texture>();
 		for (int i = 1; i <= width; i++) {
 			int healthRise = i;
-			pixmapHealth = new Pixmap(healthRise, height, Format.RGB565);
+			Pixmap pixmapHealth = new Pixmap(healthRise, height, Format.RGB565);
 			pixmapHealth.setColor(Color.BLUE);
 			pixmapHealth.drawRectangle(0, 0, healthRise, height);
 			Texture healthBar = new Texture(healthRise, height, Format.RGB565);
@@ -44,7 +44,7 @@ public class HealthBar {
 	
 	public void render(SpriteBatch batch, float x, float y) {
 		if (currentHealth > 0) {
-			batch.draw(healthBackground, x, y);
+//			batch.draw(healthBackground, x, y);
 			batch.draw(getHealthTexture(), x, y);
 		}
 	}
